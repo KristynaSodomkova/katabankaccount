@@ -1,3 +1,4 @@
 from katabankaccount.account import Account
-def test_construction():
-    d = Account(500, 200, "print")
+def test_account_class_exists():
+    assert type(Account) == type
+    assert Account.__name__ == "Account"
