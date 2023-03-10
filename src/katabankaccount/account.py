@@ -9,3 +9,5 @@ class Account:
     def withdraw(self, amount):
         self.balance -= amount
 
+    def print_statement(self):
+        print(f"{self.balance}")

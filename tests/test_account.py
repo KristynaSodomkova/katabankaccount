@@ -16,3 +16,9 @@ def test_account_method_withdraw():
     account = Account(100)
     account.withdraw(20)
     assert account.balance == 80
+
+def test_print_statement(capfd):
+    account = Account(100)
+    account.print_statement()
+    captured = capfd.readouterr()
+    assert captured.out == "100\n"
