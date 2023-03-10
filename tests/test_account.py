@@ -19,6 +19,7 @@ def test_account_method_withdraw():
 
 def test_print_statement(capfd):
     account = Account(100)
+    account.deposit(20)
     account.print_statement()
     captured = capfd.readouterr()
-    assert captured.out == "100\n"
+    assert captured.out == "|| 20 || 120\n"
