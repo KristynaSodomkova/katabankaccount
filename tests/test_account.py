@@ -6,3 +6,7 @@ def test_account_class_exists():
 def test_account_attribute_balance():
     account = Account(100)
     assert hasattr(account, 'balance')
+
+def test_account_method_deposit():
+    account = Account(100)
+    pass
