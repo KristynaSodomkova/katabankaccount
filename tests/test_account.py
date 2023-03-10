@@ -9,4 +9,5 @@ def test_account_attribute_balance():
 
 def test_account_method_deposit():
     account = Account(100)
-    pass
+    account.deposit(50)
+    assert account.balance == 150
