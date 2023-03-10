@@ -11,3 +11,8 @@ def test_account_method_deposit():
     account = Account(100)
     account.deposit(50)
     assert account.balance == 150
+
+def test_account_method_withdraw():
+    account = Account(100)
+    account.withdraw(20)
+    assert account.balance == 80
