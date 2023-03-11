@@ -1,17 +1,21 @@
 import datetime
 
+def day_stamp():
+    day = datetime.date.today()
+    return day
+
 class Account:
 
     def __init__(self, balance):
         self.balance = balance
 
     def deposit(self, amount):
-        day = datetime.date.today()
+        day = day_stamp()
         self.balance += amount
         return day
 
     def withdraw(self, amount):
-        day = datetime.date.today()
+        day = day_stamp()
         self.balance -= amount
         return day
 
