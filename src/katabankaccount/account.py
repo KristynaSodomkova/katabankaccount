@@ -8,17 +8,21 @@ class Account:
 
     def __init__(self, balance):
         self.balance = balance
+        self.deposit_amount = 0
+        self.withdraw_amount = 0
 
     def deposit(self, amount):
         day = day_stamp()
         self.balance += amount
-        return day
+        self.deposit_amount = amount
+        return day, amount
 
     def withdraw(self, amount):
         day = day_stamp()
         self.balance -= amount
-        return day
+        self.withdraw_amount = amount
+        return day, amount
 
-    def print_statement(self, amount):
-        print(f"|| Amount || Balance\n|| {amount} || {self.balance}")
+    def print_statement(self):
+        print(f"|| Amount || Balance\n|| {self.deposit_amount} || {self.balance}")
 
