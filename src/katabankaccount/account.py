@@ -10,4 +10,4 @@ class Account:
         self.balance -= amount
 
     def print_statement(self, amount):
-        print(f"|| {amount} || {self.balance}")
+        print(f"|| Amount || Balance\n|| {amount} || {self.balance}")

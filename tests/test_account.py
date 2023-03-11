@@ -22,4 +22,4 @@ def test_print_statement(capfd):
     account.deposit(20)
     account.print_statement(20)
     captured = capfd.readouterr()
-    assert captured.out == "|| 20 || 120\n"
+    assert captured.out == "|| Amount || Balance\n|| 20 || 120\n"
