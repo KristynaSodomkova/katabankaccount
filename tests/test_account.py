@@ -1,5 +1,6 @@
 from katabankaccount.account import Account
 import datetime
+import pytest
 def test_account_class_exists():
     assert type(Account) == type
     assert Account.__name__ == "Account"
@@ -25,6 +26,7 @@ def test_print_statement(capfd):
     captured = capfd.readouterr()
     assert captured.out == "|| Amount || Balance\n|| 20 || 120\n"
 
+@pytest.fixture
 def test_withdraw_returns_current_day(monkeypatch):
     mock_date = datetime.date(2023, 3, 10)
 
