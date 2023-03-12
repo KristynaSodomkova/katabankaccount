@@ -42,7 +42,7 @@ def test_withdraw_returns_current_day(monkeypatch):
     assert withdrawal_day == mock_date
 
 def test_account_entry_object():
-    test_entry = {"date": datetime.date.today(), "amount": 100, "balance": 1000}
-    assert test_entry["date"] == datetime.date.today()
-    assert test_entry["amount"] == 100
-    assert test_entry["balance"] == 1000
+    account = Account(1000)
+    account.deposit(500)
+    account_entry = {"date": datetime.date.today(), "amount": 200, "balance": 2300}
+    assert Account.list_of_deposits_withdraws[-1] == account_entry
