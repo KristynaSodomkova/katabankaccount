@@ -1,7 +1,8 @@
 import datetime
 
 class Account:
-    list_of_deposits_withdraws = []
+    list_of_deposits_withdraws = [{"date": "Date", "amount": "Amount", "balance": "Balance"}]
+
     def __init__(self, balance):
         self.balance = balance
 

@@ -6,7 +6,7 @@ def test_print_statement(capsys):
     account.deposit(20)
     account.print_statement()
     captured = capsys.readouterr()
-    assert captured.out == f"{datetime.date.today()} || 20 || 1020\n"
+    assert captured.out == f"Date || Amount || Balance\n{datetime.date.today()} || 20 || 1020\n"
 
 #check if the class Account exists
 def test_account_class_exists():
