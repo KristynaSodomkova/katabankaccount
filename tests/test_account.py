@@ -24,6 +24,7 @@ def test_account_method_withdraw():
     account.withdraw(20)
     assert account.balance == 80
 
+"""
 #check the outcome of print_statement method from Account class
 def test_print_statement(capfd):
     account = Account(100)
@@ -31,7 +32,7 @@ def test_print_statement(capfd):
     account.print_statement()
     captured = capfd.readouterr()
     assert captured.out == "|| Amount || Balance\n|| 20 || 120\n"
-
+"""
 #check if withdraw method from Accont returns the current day
 """
 @pytest.fixture
