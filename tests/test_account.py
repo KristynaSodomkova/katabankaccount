@@ -1,16 +1,12 @@
 from katabankaccount.account import Account
 import datetime
-import pytest #to be able to use pytest fixtures
 
-@pytest.fixture
-def test_print_statement(capfd, monkeypatch):
-    mock_date = datetime.date(2023, 3, 10)
-    monkeypatch.setattr(datetime.date, 'today', lambda: mock_date)
+def test_print_statement(capsys):
     account = Account(1000)
     account.deposit(20)
     account.print_statement()
-    captured = capfd.readouterr()
-    assert captured.out == f"mockday || 20 || 1020\n"
+    captured = capsys.readouterr()
+    assert captured.out == f"{datetime.date.today()} || 20 || 1020\n"
 
 #check if the class Account exists
 def test_account_class_exists():
