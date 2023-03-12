@@ -2,6 +2,13 @@ from katabankaccount.account import Account
 import datetime
 import pytest #to be able to use pytest fixtures
 
+def test_print_statement(capfd):
+    account = Account(1000)
+    account.deposit(20)
+    account.print_statement()
+    captured = capfd.readouterr()
+    assert captured.out == f"|| 20 || 1020\n"
+
 #check if the class Account exists
 def test_account_class_exists():
     assert type(Account) == type
@@ -47,10 +54,5 @@ def test_account_entry_object_with_withdraw():
     account_entry = {"date": datetime.date.today(), "amount": -200, "balance": 800}
     assert Account.list_of_deposits_withdraws[-1] == account_entry
 
-def test_print_statement(capfd):
-    account_print = Account(1000)
-    account_print.deposit(20)
-    account_print.print_statement()
-    captured = capfd.readouterr()
-    assert captured.out == f"|| 20 || 1020"
+
 

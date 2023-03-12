@@ -30,5 +30,5 @@ class Account:
 
     def print_statement(self):
         for entry in Account.list_of_deposits_withdraws:
-            print(f"|| {entry['amount']}, {entry['balance']}")
+            print(f"|| {entry['amount']} || {entry['balance']}")
 
