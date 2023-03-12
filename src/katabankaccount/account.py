@@ -18,7 +18,7 @@ class Account:
         day = day_stamp()
         self.balance += amount
         self.deposit_amount = amount
-        account_entry = {}
+        account_entry = {"date": day, "amount": amount, "balance": self.balance}
         list_of_deposits_withdraws.append(account_entry)
         return day, amount
 
