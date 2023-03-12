@@ -27,7 +27,8 @@ class Account:
         amount = amount*(-1)
         account_entry = self.create_account_entry(day, amount, self.balance)
         Account.list_of_deposits_withdraws.append(account_entry)
-"""
+
     def print_statement(self):
-        print(f"|| Amount || Balance\n|| {self.amount} || {self.balance}")
-"""
+        for entry in Account.list_of_deposits_withdraws:
+            print(f"|| {entry['amount']}, {entry['balance']}")
+

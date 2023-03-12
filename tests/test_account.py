@@ -48,18 +48,9 @@ def test_account_entry_object_with_withdraw():
     assert Account.list_of_deposits_withdraws[-1] == account_entry
 
 def test_print_statement(capfd):
-    account = Account(1000)
-    account.deposit(20)
-    account.print_statement()
-    captured = capfd.readauterr()
-    assert captured.out == "day || 20 || 1020"
-
-"""
-#check the outcome of print_statement method from Account class
-def test_print_statement(capfd):
-    account = Account(100)
-    account.deposit(20)
-    account.print_statement()
+    account_print = Account(1000)
+    account_print.deposit(20)
+    account_print.print_statement()
     captured = capfd.readouterr()
-    assert captured.out == "|| Amount || Balance\n|| 20 || 120\n"
-"""
+    assert captured.out == f"|| 20 || 1020"
+
