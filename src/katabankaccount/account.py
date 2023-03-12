@@ -1,5 +1,6 @@
 import datetime
 
+
 class Account:
     list_of_deposits_withdraws = [{"date": "Date", "amount": "Amount", "balance": "Balance"}]
 
@@ -16,6 +17,10 @@ class Account:
         account_entry = {"date": day, "amount": amount, "balance": balance}
         return account_entry
 
+    @staticmethod
+    def sort_by_date():
+        sorted(Account.list_of_deposits_withdraws, key=lambda x: x['date'])
+
     def deposit(self, amount):
         day = self.day_stamp()
         self.balance += amount
@@ -29,7 +34,7 @@ class Account:
         account_entry = self.create_account_entry(day, amount, self.balance)
         Account.list_of_deposits_withdraws.append(account_entry)
 
-    def print_statement(self):
+    @staticmethod
+    def print_statement():
         for entry in Account.list_of_deposits_withdraws:
             print(f"{entry['date']} || {entry['amount']} || {entry['balance']}")
-

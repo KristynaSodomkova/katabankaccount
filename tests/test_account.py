@@ -30,7 +30,7 @@ def test_account_method_withdraw():
     account.withdraw(20)
     assert account.balance == 80
 
-#check if withdraw method from Accont returns the current day
+#check if withdraw method from Account returns the current day
 """
 @pytest.fixture
 def test_withdraw_returns_current_day(monkeypatch):
@@ -53,5 +53,21 @@ def test_account_entry_object_with_withdraw():
     account_entry = {"date": datetime.date.today(), "amount": -200, "balance": 800}
     assert Account.list_of_deposits_withdraws[-1] == account_entry
 
+def test_list_of_deposits_withdraws_sorted_by_date():
+    account = Account(300)
+    list_of_test_entries = [
+        {"date": "2023-01-12", "amount": 100, "balance": 500},
+        {"date": "2022-01-13", "amount": 50, "balance": 400},
+        {"date": "2023-03-12", "amount": 200, "balance": 700},
+    ]
+    account.list_of_deposits_withdraws = list_of_test_entries
 
+    account.sort_by_date()
+
+    expected_sorted_list = [
+        {"date": "2022-01-13", "amount": 50, "balance": 400},
+        {"date": "2023-01-12", "amount": 100, "balance": 500},
+        {"date": "2023-03-12", "amount": 200, "balance": 700},
+    ]
+    assert account.list_of_deposits_withdraws == expected_sorted_list
 
