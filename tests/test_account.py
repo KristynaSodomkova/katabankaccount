@@ -33,6 +33,7 @@ def test_print_statement(capfd):
     assert captured.out == "|| Amount || Balance\n|| 20 || 120\n"
 
 #check if withdraw method from Accont returns the current day
+"""
 @pytest.fixture
 def test_withdraw_returns_current_day(monkeypatch):
     mock_date = datetime.date(2023, 3, 10)
@@ -40,9 +41,10 @@ def test_withdraw_returns_current_day(monkeypatch):
     account = Account(1000)
     withdrawal_day = account.withdraw(500)
     assert withdrawal_day == mock_date
+"""
 
 def test_account_entry_object():
     account = Account(1000)
     account.deposit(500)
-    account_entry = {"date": datetime.date.today(), "amount": 200, "balance": 2300}
+    account_entry = {"date": datetime.date.today(), "amount": 500, "balance": 1500}
     assert Account.list_of_deposits_withdraws[-1] == account_entry

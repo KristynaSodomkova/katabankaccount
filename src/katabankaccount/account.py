@@ -18,13 +18,13 @@ class Account:
         self.deposit_amount = amount
         account_entry = {"date": day, "amount": amount, "balance": self.balance}
         Account.list_of_deposits_withdraws.append(account_entry)
-        return day, amount
+        return amount
 
     def withdraw(self, amount):
         day = day_stamp()
         self.balance -= amount
         self.withdraw_amount = amount
-        return day, amount
+        return amount
 
     def print_statement(self):
         print(f"|| Amount || Balance\n|| {self.deposit_amount} || {self.balance}")
