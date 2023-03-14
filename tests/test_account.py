@@ -1,6 +1,23 @@
 from katabankaccount.account import Account
 import datetime
 
+def test_list_of_deposits_withdraws_sorted_by_date():
+    account = Account(0)
+    list_of_test_entries = [
+        {"date": "2023-01-12", "amount": 100, "balance": 500},
+        {"date": "2022-01-13", "amount": 50, "balance": 400},
+        {"date": "2023-03-12", "amount": 200, "balance": 700},
+    ]
+
+    account.sort_by_date(list_of_test_entries)
+
+    expected_sorted_list = [
+        {"date": "2023-03-12", "amount": 200, "balance": 700},
+        {"date": "2023-01-12", "amount": 100, "balance": 500},
+        {"date": "2022-01-13", "amount": 50, "balance": 400},
+    ]
+    assert list_of_test_entries == expected_sorted_list
+
 def test_print_statement(capsys):
     account = Account(1000)
     account.deposit(20)
@@ -53,21 +70,5 @@ def test_account_entry_object_with_withdraw():
     account_entry = {"date": datetime.date.today(), "amount": -200, "balance": 800}
     assert Account.list_of_deposits_withdraws[-1] == account_entry
 
-def test_list_of_deposits_withdraws_sorted_by_date():
-    account = Account(300)
-    list_of_test_entries = [
-        {"date": "2023-01-12", "amount": 100, "balance": 500},
-        {"date": "2022-01-13", "amount": 50, "balance": 400},
-        {"date": "2023-03-12", "amount": 200, "balance": 700},
-    ]
-    account.list_of_deposits_withdraws = list_of_test_entries
 
-    account.sort_by_date()
-
-    expected_sorted_list = [
-        {"date": "2022-01-13", "amount": 50, "balance": 400},
-        {"date": "2023-01-12", "amount": 100, "balance": 500},
-        {"date": "2023-03-12", "amount": 200, "balance": 700},
-    ]
-    assert account.list_of_deposits_withdraws == expected_sorted_list
 

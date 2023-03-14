@@ -18,8 +18,8 @@ class Account:
         return account_entry
 
     @staticmethod
-    def sort_by_date():
-        sorted(Account.list_of_deposits_withdraws, key=lambda x: x['date'])
+    def sort_by_date(list_to_sort):
+        return list_to_sort.sort(key=lambda x: x['date'], reverse=True)
 
     def deposit(self, amount):
         day = self.day_stamp()
@@ -36,5 +36,6 @@ class Account:
 
     @staticmethod
     def print_statement():
+        Account.sort_by_date(Account.list_of_deposits_withdraws[1:])
         for entry in Account.list_of_deposits_withdraws:
             print(f"{entry['date']} || {entry['amount']} || {entry['balance']}")
