@@ -1,12 +1,15 @@
 from katabankaccount.account import Account
 import datetime
+import pytest
+
 
 class TestAccount:
-    def setup_method(self):
+    @staticmethod
+    def setup_method():
         Account.list_of_deposits_withdraws = []
         Account.current_date = datetime.date.today()
 
-#check if the class Account exists
+    # check if the class Account exists
     def test_account_class_exists(self):
         assert type(Account) == type
         assert Account.__name__ == "Account"
@@ -16,17 +19,27 @@ class TestAccount:
         account = Account(100)
         assert hasattr(account, 'balance')
 
-    #check if the Account method deposit adds amount to balance
+    # check if the Account method deposit adds amount to balance
     def test_account_method_deposit(self):
         account = Account(100)
         account.deposit(50)
         assert account.balance == 150
 
-    #check if the Account method withdraw subtracts amount from balance
+    def test_deposit_with_non_positive_amount(self):
+        account = Account(100)
+        with pytest.raises(ValueError, match="Amount must be positive"):
+            account.deposit(-50)
+
+    # check if the Account method withdraw subtracts amount from balance
     def test_account_method_withdraw(self):
         account = Account(100)
         account.withdraw(20)
         assert account.balance == 80
+
+    def test_withdraw_with_amount_exceeding_balance(self):
+        account = Account(100)
+        with pytest.raises(ValueError, match="Amount exceeds available balance"):
+            account.withdraw(150)
 
     def test_account_entry_object_with_deposit(self):
         account = Account(1000)
@@ -63,4 +76,5 @@ class TestAccount:
         account.withdraw(100)
         account.print_statement()
         captured = capsys.readouterr()
-        assert captured.out == f"Date || Amount || Balance\n{datetime.date.today()} || 20 || 1020\n{datetime.date.today()} || -100 || 920\n"
+        assert captured.out == f"Date || Amount || Balance\n" \
+                               f"{datetime.date.today()} || 20 || 1020\n{datetime.date.today()} || -100 || 920\n"

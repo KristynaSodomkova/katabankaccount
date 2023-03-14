@@ -22,12 +22,18 @@ class Account:
         return list_to_sort.sort(key=lambda x: x['date'], reverse=True)
 
     def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
         day = self.day_stamp()
         self.balance += amount
         account_entry = self.create_account_entry(day, amount, self.balance)
         Account.list_of_deposits_withdraws.append(account_entry)
 
     def withdraw(self, amount):
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
+        if amount > self.balance:
+            raise ValueError("Amount exceeds available balance")
         day = self.day_stamp()
         self.balance -= amount
         amount = amount*(-1)
