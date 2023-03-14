@@ -47,17 +47,6 @@ def test_account_method_withdraw():
     account.withdraw(20)
     assert account.balance == 80
 
-#check if withdraw method from Account returns the current day
-"""
-@pytest.fixture
-def test_withdraw_returns_current_day(monkeypatch):
-    mock_date = datetime.date(2023, 3, 10)
-    monkeypatch.setattr(datetime.date, 'today', lambda:mock_date)
-    account = Account(1000)
-    withdrawal_day = account.withdraw(500)
-    assert withdrawal_day == mock_date
-"""
-
 def test_account_entry_object_with_deposit():
     account = Account(1000)
     account.deposit(500)
@@ -69,6 +58,4 @@ def test_account_entry_object_with_withdraw():
     account.withdraw(200)
     account_entry = {"date": datetime.date.today(), "amount": -200, "balance": 800}
     assert Account.list_of_deposits_withdraws[-1] == account_entry
-
-
 

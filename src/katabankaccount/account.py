@@ -2,7 +2,7 @@ import datetime
 
 
 class Account:
-    list_of_deposits_withdraws = [{"date": "Date", "amount": "Amount", "balance": "Balance"}]
+    list_of_deposits_withdraws = []
 
     def __init__(self, balance):
         self.balance = balance
@@ -36,6 +36,7 @@ class Account:
 
     @staticmethod
     def print_statement():
-        Account.sort_by_date(Account.list_of_deposits_withdraws[1:])
+        Account.sort_by_date(Account.list_of_deposits_withdraws)
+        print("Date || Amount || Balance")
         for entry in Account.list_of_deposits_withdraws:
             print(f"{entry['date']} || {entry['amount']} || {entry['balance']}")
